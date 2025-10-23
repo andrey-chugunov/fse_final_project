@@ -9,7 +9,9 @@ dependencies = [
   "fastapi",
   "uvicorn[standard]",
   "torch",
-  "pillow"
+  "pillow",
+  "ultralytics",
+  "opencv-python"
 ]
 
 [project.optional-dependencies]
