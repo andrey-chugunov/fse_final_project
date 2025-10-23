@@ -9,7 +9,8 @@ dependencies = [
   "fastapi",
   "uvicorn[standard]",
   "torch",
-  "pillow"
+  "pillow",
+  "python-multipart"
 ]
 
 [project.optional-dependencies]

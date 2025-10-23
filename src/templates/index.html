@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flower Detector</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 40px; }
+    img { max-width: 400px; margin: 20px; border-radius: 10px; }
+    h1 { font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>Flower Detector</h1>
+
+  <form action="/upload" enctype="multipart/form-data" method="post">
+    <input type="file" name="file" accept="image/*">
+    <button type="submit">Upload</button>
+  </form>
+
+  {% if input_image %}
+    <h3>Input image:</h3>
+    <img src="{{ input_image }}" alt="Input">
+  {% endif %}
+
+  {% if output_image %}
+    <h3>Output image:</h3>
+    <img src="{{ output_image }}" alt="Output">
+  {% endif %}
+</body>
+</html>
