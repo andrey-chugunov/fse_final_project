@@ -1,20 +1,17 @@
-
 from ultralytics import YOLO
+from pathlib import Path
 
-def get_output(image_path: str) -> str:
+MODEL_PATH = Path(__file__).resolve().parent.parent / "weights" / "yolov8n.pt"
+model = YOLO(str(MODEL_PATH))
+
+def get_output(image_path: str, save_path: str) -> None:
     """
-    Get the output of the model for a given image path.
+    Run YOLO inference on an image and save the annotated result.
+
     Args:
-        image_path: The path to the image to run inference on.
-    Returns:
-        The output of the model for the given image path.
+        image_path: Path to the input image.
+        save_path: Path to save the output image.
     """
-    model = YOLO('weights/yolov8n.pt')
-
-    # Run inference on an image
     results = model(image_path)
-
-    results[0].save("img_output/output.jpg")
-
-
-get_output('test.jpg')
+    for r in results:
+        r.save(save_path)
