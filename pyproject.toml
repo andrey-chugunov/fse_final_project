@@ -10,7 +10,8 @@ dependencies = [
   "uvicorn[standard]",
   "torch",
   "pillow",
-  "python-multipart"
+  "ultralytics",
+  "opencv-python"
 ]
 
 [project.optional-dependencies]
