@@ -5,7 +5,12 @@ from fastapi.templating import Jinja2Templates
 from pathlib import Path
 import shutil
 
-from src.model_inference import get_output
+
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parent.parent / "src"))
+
+from model_inference import get_output
 
 app = FastAPI()
 
