@@ -1,5 +1,7 @@
 .venv/
 
+img_output/
+
 build/
 dist/
 *.egg-info/
