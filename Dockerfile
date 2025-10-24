@@ -13,6 +13,7 @@ COPY src ./src
 COPY weights ./weights
 COPY tests ./tests
 
+RUN mkdir -p src/static/results src/templates
 RUN pip install --upgrade pip
 RUN pip install -e ".[dev]"
 
