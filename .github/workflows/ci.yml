@@ -1,0 +1,42 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - webapp
+  pull_request:
+
+jobs:
+  docker-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t fse_final_project_1:ci .
+
+      - name: Run tests inside Docker
+        run: |
+          docker run --rm fse_final_project_1:ci \
+            bash -c "pytest -v || (echo 'Tests failed!' && exit 1)"
+
+  docker-build:
+    runs-on: ubuntu-latest
+    needs: docker-test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build final Docker image
+        run: docker build -t fse_final_project_1:latest .
+
+      - name: Run container and health check
+        run: |
+          docker run -d -p 8000:8000 --name test_app fse_final_project_1:latest
+          sleep 5
+          curl -f http://localhost:8000/health || (docker logs test_app && exit 1)
+          docker stop test_app
